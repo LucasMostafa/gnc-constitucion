@@ -1,5 +1,7 @@
-name = "mi-worker"                    # poné el nombre que quieras para el worker
-compatibility_date = "2025-11-27"     # dejalo así o poné la fecha que necesites
-main = "src/index.ts"                 # archivo principal de tu worker (ajustá si es otro)
-type = "esm"                          # "esm" o "webpack" según tu proyecto
-account_id = ""                       # opcional aquí; lo ideal es ponerlo como secret en GH
+name = "gnc-constitucion"
+compatibility_date = "2025-11-27"
+type = "esm"
+account_id = ""   # opcional, mejor guardar en secrets de GH
+
+[assets]
+directory = "./dist/gnc-constitucion"
