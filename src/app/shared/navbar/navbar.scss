@@ -41,52 +41,68 @@ $nav-padding: 0.75rem;
     border: 2px solid red !important;
   }
 
-
   .navbar-toggler {
     border: none;
     padding: 0.25rem 0.5rem;
   }
 
   .navbar-toggler-icon {
-    // ícono hamburger custom (bootstrap usa SVG en background)
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
 
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 24px;
+  /* ============================
+        NAV LINKS (ANIMACIÓN)
+     ============================ */
 
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      transition: opacity 0.2s;
-
-      &:hover {
-        opacity: 0.7;
-      }
-    }
+  .navbar-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    position: relative;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
+
+  /* Fade + pequeño movimiento */
+  .navbar-nav .nav-link:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+  }
+
+  /* Subrayado animado */
+  .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: #fff;
+    transition: width 0.3s ease;
+  }
+
+  /* Se activa en hover y cuando tiene .active */
+  .navbar-nav .nav-link:hover::after,
+  .navbar-nav .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* ============================ */
 
   @media (max-width: 768px) {
     .logo {
-      height: 40px; // más chico en tablets
+      height: 40px;
     }
   }
 
   @media (max-width: 480px) {
     .logo {
-      height: 34px; // más chico en celulares
+      height: 34px;
     }
 
-    .nav-links {
-      gap: 16px;
-
-      a {
-        font-size: 1rem;
-      }
+    .navbar-nav .nav-link {
+      font-size: 1rem;
     }
   }
 }
