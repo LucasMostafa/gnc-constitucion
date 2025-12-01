@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+// src/app/pages/home/home.component.ts
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
+  styleUrls: ['./home.scss']
 })
-export class Home {
-
+export class Home implements OnInit {
+  constructor() { }
+  ngOnInit(): void { }
 }
+
+
