@@ -8,19 +8,19 @@
           <p class="eyebrow">GNC Constitución</p>
           <h1 class="display-5 fw-bold">Soluciones rápidas y confiables para tu vehículo</h1>
           <p class="lead text-muted mb-4">
-            Servicios de instalación, mantenimiento y reparacion con atención personalizada. Pedí turno o consultanos.
+            Servicios de instalación, mantenimiento y reparación con atención personalizada.
+            Pedí turno o consultanos.
           </p>
 
           <div class="d-flex gap-2 flex-wrap">
-            <a routerLink="/turnos" class="btn btn-primary btn-lg hero-btn" aria-label="Pedir turno">
+            <a routerLink="/turnos" class="btn btn-primary btn-lg hero-btn">
               Pedir turno
             </a>
-            <a routerLink="/contacto" class="btn btn-outline-light btn-lg hero-btn" aria-label="Contactanos">
+            <a routerLink="/contacto" class="btn btn-consultar btn-lg hero-btn">
               Consultar
             </a>
           </div>
 
-          <!-- Trust / micro info -->
           <div class="trust d-flex align-items-center gap-3 mt-4">
             <div class="small-info text-nowrap">
               <strong>20+ años</strong>
@@ -35,28 +35,33 @@
         </div>
       </div>
 
-      <!-- Imágenes / collage -->
+      <!-- Imágenes del hero -->
       <div class="col-lg-6 order-1 order-lg-2">
         <div class="hero-media">
           <div class="media-grid">
-            <img src="assets/img/home/TA-gemini.png" alt="Servicio de GNC" loading="lazy" class="img-fluid media-item big" />
-            <img src="assets/img/home/reguladores-gemini.png" alt="Equipo técnico" loading="lazy" class="img-fluid media-item small tl" />
-            <img src="assets/img/home/diafragma-gemini.png" alt="Accesorios" loading="lazy" class="img-fluid media-item small br" />
+            <img src="assets/img/home/TA-gemini.png" alt="Servicio de GNC" class="img-fluid media-item big"
+              loading="lazy" />
+
+            <img src="assets/img/home/reguladores-gemini.png" alt="Equipo técnico" class="img-fluid media-item small tl"
+              loading="lazy" />
+
+            <img src="assets/img/home/diafragma-gemini.png" alt="Accesorios" class="img-fluid media-item small br"
+              loading="lazy" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Servicios destacados -->
-    <div class="row services-row mt-5">
+    <!-- Servicios destacados (reemplaza esta parte en home.component.html) -->
+    <div class="row services-row mt-5 gx-3 gy-3">
       <div class="col-12">
         <h2 class="h5 mb-3">Nuestros servicios</h2>
       </div>
 
       <div class="col-md-4">
-        <div class="service-card p-3 h-100 d-flex gap-3 align-items-start">
-          <div class="icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
-            <i class="bi bi-gear-fill" aria-hidden="true"></i>
+        <div class="service-card p-3 d-flex gap-3 align-items-start">
+          <div class="service-icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
+            <i class="bi bi-gear-fill"></i>
           </div>
           <div>
             <h3 class="h6 mb-1">Instalación</h3>
@@ -66,21 +71,21 @@
       </div>
 
       <div class="col-md-4">
-        <div class="service-card p-3 h-100 d-flex gap-3 align-items-start">
-          <div class="icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
-            <i class="bi bi-wrench" aria-hidden="true"></i>
+        <div class="service-card p-3 d-flex gap-3 align-items-start">
+          <div class="service-icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
+            <i class="bi bi-wrench"></i>
           </div>
           <div>
             <h3 class="h6 mb-1">Reparaciones</h3>
-            <p class="mb-0 small text-muted">Perdidas y reparaciones de equipos de 3era, 4ta y 5ta generación</p>
+            <p class="mb-0 small text-muted">Equipos carburador, 4ta y 5ta generacion.</p>
           </div>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="service-card p-3 h-100 d-flex gap-3 align-items-start">
-          <div class="icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
-            <i class="bi bi-shop" aria-hidden="true"></i>
+        <div class="service-card p-3 d-flex gap-3 align-items-start">
+          <div class="service-icon bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center">
+            <i class="bi bi-shop"></i>
           </div>
           <div>
             <h3 class="h6 mb-1">Accesorios</h3>

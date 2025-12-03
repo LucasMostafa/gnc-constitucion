@@ -6,9 +6,7 @@ $nav-height: 72px;
 $nav-padding: 0.5rem 1rem;
 $blur: 8px;
 
-/* -----------------------
-   RESET SIMPLE PARA EVITAR RAYA BLANCA
-   ----------------------- */
+/* Reset / mejoras */
 html, body {
   margin: 0;
   padding: 0;
@@ -16,14 +14,13 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* padding para que el contenido no sea tapado por el navbar fijo */
 body {
   padding-top: $nav-height;
 }
 
-/* -----------------------
+/* ========================
    NAVBAR
-   ----------------------- */
+   ======================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -31,10 +28,9 @@ body {
   right: 0;
   z-index: 1030;
   width: 100%;
-  border-top: 0 !important; /* quitar cualquier borde top */
+  border-top: 0 !important;
   outline: none;
 
-  /* área de fondo que ocupa todo el ancho */
   .nav-bg {
     width: 100%;
     background: $primary;
@@ -48,14 +44,13 @@ body {
     border-top: 0;
   }
 
-  /* prevenir outlines por focus que puedan dibujar líneas */
   &, & * {
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
   }
 
   /* -----------------------
-     MARCA
+     BRAND / ANIMACIÓN
      ----------------------- */
   .navbar-brand {
     display: flex;
@@ -73,6 +68,7 @@ body {
       border: none;
     }
 
+    /* Contenedor del texto para controlar overflow durante la animación */
     .brand-text {
       display: flex;
       align-items: baseline;
@@ -81,22 +77,59 @@ body {
       letter-spacing: 0.6px;
       font-size: 1rem;
       text-transform: uppercase;
+      overflow: hidden;           /* importante para animación limpia */
+      white-space: nowrap;
     }
 
-    /* solicitado: GNC en blanco, CONSTITUCIÓN en amarillo */
+    /* Texto separado (cada parte tendrá su propio delay) */
+    .gnc, .constitucion {
+      display: inline-block;
+      transform: translateX(-28px) translateZ(0); /* start off-screen-ish */
+      opacity: 0;
+      /* animation applies on load */
+      animation-name: slideInFromLeft;
+      animation-duration: 700ms;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      animation-fill-mode: forwards;
+      /* small 3D context to make transforms smoother on some browsers */
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      will-change: transform, opacity;
+    }
+
+    /* Stagger: GNC primero, Constitución después */
     .gnc {
       color: #ffffff;
       font-size: 1.62rem;
+      animation-delay: 0s;
     }
 
     .constitucion {
       color: $yellow;
       font-size: 1.62rem;
+      font-weight: 800;
+      animation-delay: 0.18s;
     }
   } /* .navbar-brand */
 
+  /* Keyframes */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-28px);
+      opacity: 0;
+    }
+    60% {
+      transform: translateX(6px); /* slight overshoot */
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
   /* -----------------------
-     TOGGLER
+     TOGGLER & ICON
      ----------------------- */
   .navbar-toggler {
     border: none;
@@ -131,28 +164,35 @@ body {
       background: rgba(255,255,255,0.03);
     }
 
-    /* quitamos el subrayado animado */
     .nav-link::after { display: none; }
 
-    /* indicador activo moderno: fondo suave + sombra */
     .nav-link.active,
-    .nav-item .nav-link.router-link-active { /* por si angular agrega clases distintas */
+    .nav-item .nav-link.router-link-active {
       background: rgba(255,255,255,0.06);
       box-shadow: 0 6px 18px rgba(2,6,23,0.12);
       transform: translateY(-1px);
       color: #fff;
     }
-  } /* .navbar-nav */
+  }
 
-  /* mobile adjustments */
+  /* responsive */
   @media (max-width: 991px) {
     .brand-text { font-size: 0.95rem; }
     .logo { height: 42px; }
   }
 
   @media (max-width: 576px) {
-    .brand-text { display: none; } /* ocultar texto en pantallas muy chicas (opcional) */
+    .brand-text { display: none; } /* opcional: sólo icono en mobile */
     .logo { height: 36px; }
     .navbar-nav .nav-link { font-size: 0.95rem; padding: .4rem .6rem; }
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .gnc, .constitucion {
+      animation: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
   }
 } /* .navbar */
