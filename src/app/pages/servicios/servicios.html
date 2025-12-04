@@ -1,1 +1,74 @@
-<p>servicios works!</p>
+<!-- servicios.component.html -->
+<section id="servicios" class="servicios-section" aria-labelledby="titulo-servicios">
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <div class="container servicios-container">
+    <header class="servicios-header">
+      <h2 id="titulo-servicios" class="titulo-servicios">Nuestros Servicios</h2>
+      <p class="subtitulo">Soluciones profesionales para tu equipo de GNC — rápidas, seguras y certificadas.</p>
+    </header>
+
+    <nav class="servicios-filters" aria-label="Seleccionar servicio">
+      <!-- opcional: filtros o micro-nav -->
+      <button class="filter-btn" data-target="all" aria-pressed="true">Todos</button>
+      <button class="filter-btn" data-target="mantenimiento">Mantenimiento</button>
+      <button class="filter-btn" data-target="reparacion">Reparación</button>
+    </nav>
+
+    <div class="servicios-grid" role="list">
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
+        <div class="card-inner">
+          <h3>Renovación de oblea</h3>
+          <p>Revision del vehiculo en el momento y oblea en el dia.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
+        <div class="card-inner">
+          <h3>Prueba hidráulica</h3>
+          <p>Pruebas hidráulicas certificadas en el dia.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="calibracion">
+        <div class="card-inner">
+          <h3>Calibración</h3>
+          <p>Calibramos tu equipo para optimizar consumo, arranque y rendimiento general.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
+        <div class="card-inner">
+          <h3>Instalación</h3>
+          <p>Conversion de tu vehiculo a GNC en el dia.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
+        <div class="card-inner">
+          <h3>Reparación de reguladores</h3>
+          <p>Diagnóstico y reparación profesional de reguladores — todas las marcas.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
+        <div class="card-inner">
+          <h3>Pérdidas</h3>
+          <p>Detección y reparación de fugas de gas y perdidas de agua.</p>
+        </div>
+      </article>
+
+      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
+        <div class="card-inner">
+          <h3>Mantenimiento de equipo</h3>
+          <p>Mantenimiento preventivo e integral para alargar la vida útil del equipo.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="servicios-cta">
+      <a class="btn-primary" href="/contacto">Solicitar turno</a>
+      <a class="btn-ghost" href="/faq">Preguntas frecuentes</a>
+    </div>
+  </div>
+</section>

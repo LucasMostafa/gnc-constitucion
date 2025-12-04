@@ -1,1 +1,47 @@
-<p>turnos works!</p>
+<section class="turnos" aria-labelledby="turnos-title">
+  <div class="turnos__container">
+    <h2 id="turnos-title" class="turnos__title">Turnos</h2>
+    <p class="turnos__subtitle">Reservá tu turno o escribinos por WhatsApp.</p>
+
+    <div class="turnos__grid">
+      <!-- Formulario -->
+      <form class="turnos__form" onsubmit="$event.preventDefault(); /* manejar envío en TS */" novalidate>
+        <div class="field-row">
+          <label for="nombre" class="label">Nombre y apellido</label>
+          <input id="nombre" name="nombre" type="text" class="input" placeholder="Ej: María Pérez" required />
+        </div>
+
+        <div class="field-row">
+          <label for="email" class="label">E-mail</label>
+          <input id="email" name="email" type="email" class="input" placeholder="ejemplo@dominio.com" required />
+        </div>
+
+        <div class="field-row full">
+          <label for="descripcion" class="label">Descripción / motivo</label>
+          <textarea id="descripcion" name="descripcion" rows="5" class="textarea" placeholder="Contanos brevemente de qué se trata..." required></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn">Enviar</button>
+          <span class="note">Te responderemos por e-mail o WhatsApp.</span>
+        </div>
+      </form>
+
+      <!-- Info WhatsApp -->
+      <aside class="turnos__whatsapp" aria-labelledby="whatsapp-title">
+        <h3 id="whatsapp-title" class="whatsapp__title">WhatsApp</h3>
+        <p class="whatsapp__text">Podés escribirnos directamente. Reservas y consultas rápidas por ese medio.</p>
+
+        <a class="whatsapp__card" href="https://wa.me/5492236696219" target="_blank" rel="noopener noreferrer">
+          <div class="whatsapp__icon" aria-hidden="true">💬</div>
+          <div class="whatsapp__info">
+            <span class="whatsapp__number">+54 9 223 569 6219</span>
+            <span class="whatsapp__small">Horario: Lun-Vie 8:00–17:00</span>
+          </div>
+        </a>
+
+        <p class="whatsapp__privacy">Si preferís, dejá tu teléfono en la descripción y te escribimos nosotros.</p>
+      </aside>
+    </div>
+  </div>
+</section>
