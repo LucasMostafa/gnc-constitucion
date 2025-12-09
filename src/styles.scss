@@ -21,3 +21,81 @@ body {
 .navbar {
   padding: 0 !important;
 }
+
+/* Botón flotante de WhatsApp */
+.whatsapp-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #4daa6f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+
+  /* Animación sutil de flotación */
+  animation: floatY 3.2s ease-in-out infinite;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  }
+}
+
+.whatsapp-img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.3));
+  transition: transform 0.25s ease;
+}
+
+.whatsapp-fab:hover .whatsapp-img {
+  transform: rotate(-12deg) scale(1.12);
+}
+
+/* Flotación suave */
+@keyframes floatY {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .whatsapp-fab {
+    width: 56px;
+    height: 56px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .whatsapp-img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth; /* fallback nativo */
+}
+
+/* Para que las secciones no queden tapadas por el navbar fixed */
+.scroll-offset {
+  /* valor debe ser igual o mayor que el alto del navbar */
+  scroll-margin-top: 90px; /* ajustá según NAVBAR_HEIGHT */
+}
+
+/* Opcional: si tu navbar es muy alto en mobile, usa media queries */
+@media (max-width: 767.98px) {
+  .scroll-offset {
+    scroll-margin-top: 110px;
+  }
+}

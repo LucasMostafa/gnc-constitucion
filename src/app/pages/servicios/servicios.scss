@@ -15,7 +15,8 @@ $card-border: rgba(255, 255, 255, 0.14);
     isolation: isolate;
 
     /* Imagen de fondo + BRILLO BAJADO */
-    background-image: url('/assets/img/servicios/reparacion-gemini.png');
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/img/servicios/reparacion-gemini.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -204,6 +205,7 @@ $card-border: rgba(255, 255, 255, 0.14);
     .servicios-grid .servicio-card:nth-child(4) { animation-delay: 0.24s; }
     .servicios-grid .servicio-card:nth-child(5) { animation-delay: 0.30s; }
     .servicios-grid .servicio-card:nth-child(6) { animation-delay: 0.36s; }
+    .servicios-grid .servicio-card:nth-child(7) { animation-delay: 0.42s; }
 
     /* Responsive */
     @media (max-width: 768px) {

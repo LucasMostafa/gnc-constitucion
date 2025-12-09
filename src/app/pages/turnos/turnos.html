@@ -1,46 +1,85 @@
-<section class="turnos" aria-labelledby="turnos-title">
-  <div class="turnos__container">
-    <h2 id="turnos-title" class="turnos__title">Turnos</h2>
-    <p class="turnos__subtitle">Reservá tu turno o escribinos por WhatsApp.</p>
+<section class="schedule-section" aria-labelledby="schedule-title">
+  <div class="schedule__container">
+    <h2 id="schedule-title" class="schedule__heading">Turnos</h2>
+    <p class="schedule__subheading">Reservá tu turno o escribinos por WhatsApp.</p>
 
-    <div class="turnos__grid">
-      <!-- Formulario -->
-      <form class="turnos__form" onsubmit="$event.preventDefault(); /* manejar envío en TS */" novalidate>
-        <div class="field-row">
-          <label for="nombre" class="label">Nombre y apellido</label>
-          <input id="nombre" name="nombre" type="text" class="input" placeholder="Ej: María Pérez" required />
+    <div class="schedule__layout">
+      <!-- FORMULARIO -->
+      <form
+        class="schedule__form"
+        role="form"
+        autocomplete="on"
+        novalidate
+        aria-describedby="schedule-note"
+        onsubmit="$event.preventDefault(); /* manejar envío en TS */"
+      >
+        <div class="form-row">
+          <label for="fullName" class="form-label">Nombre y apellido</label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            class="form-input"
+            placeholder="Ej: María Pérez"
+            required
+            autocomplete="name"
+            aria-required="true"
+          />
         </div>
 
-        <div class="field-row">
-          <label for="email" class="label">E-mail</label>
-          <input id="email" name="email" type="email" class="input" placeholder="ejemplo@dominio.com" required />
+        <div class="form-row">
+          <label for="email" class="form-label">E-mail</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-input"
+            placeholder="ejemplo@dominio.com"
+            required
+            autocomplete="email"
+            aria-required="true"
+          />
         </div>
 
-        <div class="field-row full">
-          <label for="descripcion" class="label">Descripción / motivo</label>
-          <textarea id="descripcion" name="descripcion" rows="5" class="textarea" placeholder="Contanos brevemente de qué se trata..." required></textarea>
+        <div class="form-row form-row--full">
+          <label for="message" class="form-label">Descripción / motivo</label>
+          <textarea
+            id="message"
+            name="message"
+            class="form-textarea"
+            rows="6"
+            placeholder="Contanos brevemente de qué se trata (dejanos teléfono si preferís respuesta por WhatsApp)..."
+            required
+            aria-required="true"
+          ></textarea>
         </div>
 
-        <div class="actions">
-          <button type="submit" class="btn">Enviar</button>
-          <span class="note">Te responderemos por e-mail o WhatsApp.</span>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" aria-label="Enviar turno">Enviar</button>
+          <span id="schedule-note" class="form-note">Te responderemos por e-mail o WhatsApp.</span>
         </div>
       </form>
 
-      <!-- Info WhatsApp -->
-      <aside class="turnos__whatsapp" aria-labelledby="whatsapp-title">
-        <h3 id="whatsapp-title" class="whatsapp__title">WhatsApp</h3>
-        <p class="whatsapp__text">Podés escribirnos directamente. Reservas y consultas rápidas por ese medio.</p>
+      <!-- ASIDE DE CONTACTO -->
+      <aside class="contact-aside" role="complementary" aria-labelledby="contact-title">
+        <h3 id="contact-title" class="contact-aside__title">WhatsApp</h3>
+        <p class="contact-aside__text">Podés escribirnos directamente. Reservas y consultas rápidas por ese medio.</p>
 
-        <a class="whatsapp__card" href="https://wa.me/5492236696219" target="_blank" rel="noopener noreferrer">
-          <div class="whatsapp__icon" aria-hidden="true">💬</div>
-          <div class="whatsapp__info">
-            <span class="whatsapp__number">+54 9 223 569 6219</span>
-            <span class="whatsapp__small">Horario: Lun-Vie 8:00–17:00</span>
+        <a
+          class="contact-card"
+          href="https://wa.me/5492235696219"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir WhatsApp"
+        >
+          <div class="contact-card__icon" aria-hidden="true">💬</div>
+          <div class="contact-card__body">
+            <span class="contact-card__number">+54 9 223 569 6219</span>
+            <span class="contact-card__hours">Horario: Lun-Vie 8:00–17:00</span>
           </div>
         </a>
 
-        <p class="whatsapp__privacy">Si preferís, dejá tu teléfono en la descripción y te escribimos nosotros.</p>
+        <p class="contact-aside__hint">Si preferís, dejá tu teléfono en la descripción y te escribimos nosotros.</p>
       </aside>
     </div>
   </div>
