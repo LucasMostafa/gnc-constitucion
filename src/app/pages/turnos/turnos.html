@@ -1,85 +1,87 @@
-<section class="schedule-section" aria-labelledby="schedule-title">
-  <div class="schedule__container">
-    <h2 id="schedule-title" class="schedule__heading">Turnos</h2>
-    <p class="schedule__subheading">Reservá tu turno o escribinos por WhatsApp.</p>
+<section class="turnos-section" aria-labelledby="turnos-title">
+  <div class="turnos__container">
+    <h2 id="turnos-title" class="turnos__heading">Turnos</h2>
+    <p class="turnos__subheading">Reservá tu turno o escribinos por WhatsApp.</p>
 
-    <div class="schedule__layout">
-      <!-- FORMULARIO -->
+    <div class="turnos__layout">
       <form
-        class="schedule__form"
+        class="turnos__form"
         role="form"
         autocomplete="on"
         novalidate
-        aria-describedby="schedule-note"
-        onsubmit="$event.preventDefault(); /* manejar envío en TS */"
+        aria-describedby="turnos-note"
+        (submit)="onSubmit($event)"
+        #turnosForm="ngForm"
       >
-        <div class="form-row">
-          <label for="fullName" class="form-label">Nombre y apellido</label>
+        <div class="turnos__row">
+          <label for="fullName" class="turnos__label">Nombre y apellido</label>
           <input
             id="fullName"
             name="fullName"
             type="text"
-            class="form-input"
+            class="turnos__input"
             placeholder="Ej: María Pérez"
             required
             autocomplete="name"
             aria-required="true"
+            ngModel
           />
         </div>
 
-        <div class="form-row">
-          <label for="email" class="form-label">E-mail</label>
+        <div class="turnos__row">
+          <label for="email" class="turnos__label">E-mail</label>
           <input
             id="email"
             name="email"
             type="email"
-            class="form-input"
+            class="turnos__input"
             placeholder="ejemplo@dominio.com"
             required
             autocomplete="email"
             aria-required="true"
+            ngModel
           />
         </div>
 
-        <div class="form-row form-row--full">
-          <label for="message" class="form-label">Descripción / motivo</label>
+        <div class="turnos__row turnos__row--full">
+          <label for="message" class="turnos__label">Descripción / motivo</label>
           <textarea
             id="message"
             name="message"
-            class="form-textarea"
+            class="turnos__textarea"
             rows="6"
             placeholder="Contanos brevemente de qué se trata (dejanos teléfono si preferís respuesta por WhatsApp)..."
             required
             aria-required="true"
+            ngModel
           ></textarea>
         </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn-primary" aria-label="Enviar turno">Enviar</button>
-          <span id="schedule-note" class="form-note">Te responderemos por e-mail o WhatsApp.</span>
+        <div class="turnos__actions">
+          <button type="submit" class="turnos__btn" [disabled]="turnosForm.invalid">Enviar</button>
+          <span id="turnos-note" class="turnos__note">Te responderemos por e-mail o WhatsApp.</span>
         </div>
       </form>
 
-      <!-- ASIDE DE CONTACTO -->
-      <aside class="contact-aside" role="complementary" aria-labelledby="contact-title">
-        <h3 id="contact-title" class="contact-aside__title">WhatsApp</h3>
-        <p class="contact-aside__text">Podés escribirnos directamente. Reservas y consultas rápidas por ese medio.</p>
+      <aside class="turnos__aside" role="complementary" aria-labelledby="turnos-contact-title">
+        <h3 id="turnos-contact-title" class="turnos__aside-title">WhatsApp</h3>
+        <p class="turnos__aside-text">Podés escribirnos directamente. Consultas rápidas por ese medio.</p>
 
         <a
-          class="contact-card"
+          class="turnos__contact-card"
           href="https://wa.me/5492235696219"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Abrir WhatsApp"
         >
-          <div class="contact-card__icon" aria-hidden="true">💬</div>
-          <div class="contact-card__body">
-            <span class="contact-card__number">+54 9 223 569 6219</span>
-            <span class="contact-card__hours">Horario: Lun-Vie 8:00–17:00</span>
+          <div class="turnos__contact-icon" aria-hidden="true">💬</div>
+          <div class="turnos__contact-body">
+            <span class="turnos__contact-number">+54 9 223 569 6219</span>
+            <span class="turnos__contact-hours"><br>Lun-Vie 8:00–17:00</span>
           </div>
         </a>
 
-        <p class="contact-aside__hint">Si preferís, dejá tu teléfono en la descripción y te escribimos nosotros.</p>
+        <p class="turnos__aside-hint">Si preferís, dejá tu teléfono en la descripción y te escribimos nosotros.</p>
       </aside>
     </div>
   </div>

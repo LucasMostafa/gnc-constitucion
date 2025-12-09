@@ -1,5 +1,5 @@
-:root {
-  /* Paleta */
+/* Usamos :host en lugar de :root para encapsulación de componentes Angular */
+:host {
   --bg-page: #faf5f5;
   --card-bg: #ffffff;
   --field-bg: #f0f3f7;
@@ -11,241 +11,158 @@
   --radius: 12px;
   --container-max: 1200px;
   --gap: 1.25rem;
+  
+  /* Asegura que el componente sea block para tomar anchos correctos */
+  display: block; 
 }
 
-/* Contenedor principal */
-.schedule-section {
+/* scope box-sizing */
+.turnos-section, .turnos-section * {
+  box-sizing: border-box;
+}
+
+/* layout */
+.turnos-section {
   background: var(--bg-page);
   padding: 56px 20px;
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
 
-  &__container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-  }
+.turnos__container { max-width: var(--container-max); margin: 0 auto; }
+.turnos__heading { font-size: 2rem; margin: 0 0 6px; font-weight: 700; }
+.turnos__subheading { color: var(--muted); margin: 0 0 20px; font-size: 0.98rem; }
 
-  &__heading {
-    font-size: 2rem;
-    margin: 0 0 6px;
-    font-weight: 700;
-  }
-
-  &__subheading {
-    color: var(--muted);
-    margin: 0 0 20px;
-    font-size: 0.98rem;
-  }
-
-  &__layout {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: calc(var(--gap) * 1.1);
-    align-items: start;
-
-    @media (max-width: 920px) {
-      grid-template-columns: 1fr;
-    }
+/* grid */
+.turnos__layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: calc(var(--gap) * 1.1);
+  align-items: start;
+  
+  @media (max-width: 920px) { 
+    grid-template-columns: 1fr; 
   }
 }
 
-/* FORM */
-.schedule__form {
+/* form card */
+.turnos__form {
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: 26px;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
-  border: 1px solid rgba(15, 23, 36, 0.04);
-  transition: transform 0.15s ease;
+  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+  border: 1px solid rgba(15,23,36,0.04);
+  position: relative;
+  z-index: 1;
 }
 
-/* filas y labels */
-.form-row {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 14px;
-}
+/* rows & labels */
+.turnos__row { display:flex; flex-direction:column; margin-bottom:14px; }
+.turnos__row--full { width:100%; }
+.turnos__label { font-size:0.9rem; color:var(--text); margin-bottom:8px; font-weight:600; }
 
-.form-row--full {
+/* INPUTS/ TEXTAREA */
+/* Nota: Usamos selectores específicos para asegurar que el CSS gane a los estilos del navegador */
+.turnos__form input.turnos__input,
+.turnos__form textarea.turnos__textarea {
+  display: block;
   width: 100%;
-}
-
-.form-label {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-/* Inputs - Scoped and explicit selectors to avoid being overwritten by global rules */
-.schedule__form {
-  .form-input,
-  .form-textarea {
-    background: var(--field-bg);
-    border: 1px solid var(--field-border);
-    padding: 12px 14px;
-    border-radius: 10px;
-    color: var(--text);
-    font-size: 0.95rem;
-    outline: none;
-    transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.08s ease;
-    resize: vertical;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  /* placeholder: fallback + color-mix (no SASS color functions) */
-  .form-input::placeholder,
-  .form-textarea::placeholder {
-    color: rgba(107, 114, 128, 0.85); /* fallback */
-    color: color-mix(in srgb, var(--muted) 70%, white);
-    opacity: 1;
-  }
-
-  /* autofill handling */
-  .form-input:-webkit-autofill,
-  .form-textarea:-webkit-autofill {
-    -webkit-text-fill-color: var(--text);
-    box-shadow: 0 0 0px 1000px var(--field-bg) inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  .form-input:focus,
-  .form-textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 6px 20px rgba(45, 191, 127, 0.10);
-    transform: translateY(-1px);
-  }
-
-  .form-input:invalid:not(:focus),
-  .form-textarea:invalid:not(:focus) {
-    border-color: #eab3b3;
-  }
-
-  .form-textarea {
-    min-height: 140px;
-    line-height: 1.45;
-  }
-
-  .form-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 18px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-    font-weight: 700;
-    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-    box-shadow: 0 10px 30px rgba(45, 191, 127, 0.12);
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgba(45, 191, 127, 0.12);
-  }
-
-  .form-note {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-}
-
-/* ASIDE: Contacto WhatsApp */
-.contact-aside {
-  background: linear-gradient(180deg, var(--card-bg), #fbfdfe);
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid rgba(15, 23, 36, 0.04);
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
-}
-
-.contact-aside__title {
-  margin: 0 0 6px;
-  font-size: 1.05rem;
-  font-weight: 700;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
   color: var(--text);
-}
-
-.contact-aside__text {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.contact-card {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 12px;
-  background: linear-gradient(90deg, rgba(45, 191, 127, 0.08), rgba(45, 191, 127, 0.03));
-  border: 1px solid rgba(45, 191, 127, 0.12);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  color: var(--text);
-}
-
-.contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 36px rgba(16, 24, 40, 0.06);
-}
-
-.contact-card__icon {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
+  padding: 12px 14px;
   border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-  border: 1px solid rgba(15, 23, 36, 0.04);
+  font-size: 0.95rem;
+  outline: none;
+  resize: vertical;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.contact-card__number {
-  display: block;
-  font-weight: 800;
-}
-
-.contact-card__hours {
-  display: block;
+/* placeholder fallback */
+.turnos__form input.turnos__input::placeholder,
+.turnos__form textarea.turnos__textarea::placeholder {
   color: var(--muted);
-  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
-.contact-aside__hint {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 12px;
+/* autofill fix para Chrome */
+.turnos__form input.turnos__input:-webkit-autofill,
+.turnos__form textarea.turnos__textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text) !important;
+  box-shadow: 0 0 0px 1000px var(--field-bg) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
-/* Responsive tweaks */
+/* focus */
+.turnos__form input.turnos__input:focus,
+.turnos__form textarea.turnos__textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(45,191,127,0.15);
+  background: #fff; /* Opcional: aclarar fondo al enfocar */
+}
+
+/* invalid handling */
+.turnos__form input.turnos__input.ng-touched.ng-invalid:not(:focus),
+.turnos__form textarea.turnos__textarea.ng-touched.ng-invalid:not(:focus) {
+  border-color: #eab3b3;
+}
+
+.turnos__form textarea.turnos__textarea { min-height:140px; line-height:1.45; }
+
+/* actions */
+.turnos__actions { display:flex; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap; }
+
+.turnos__btn {
+  display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:10px; border:none;
+  cursor:pointer; color:#fff; font-weight:700;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 10px 30px rgba(45,191,127,0.12);
+  transition: transform .12s ease, box-shadow .12s ease;
+  z-index: 2;
+
+  &:disabled {
+    background: var(--muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none !important;
+  }
+}
+
+.turnos__btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(45,191,127,0.12); }
+.turnos__note { color:var(--muted); font-size:0.9rem; }
+
+/* aside */
+.turnos__aside { 
+  background: linear-gradient(180deg, var(--card-bg), #fbfdfe); 
+  border-radius:12px; 
+  padding:20px; 
+  border:1px solid rgba(15,23,36,0.04); 
+  box-shadow:0 8px 24px rgba(16,24,40,0.04); 
+}
+.turnos__aside-title { margin:0 0 6px; font-size:1.05rem; font-weight:700; color:var(--text); }
+.turnos__aside-text { margin:0 0 12px; color:var(--muted); font-size:0.95rem; }
+
+.turnos__contact-card { 
+  display:flex; gap:12px; align-items:center; padding:10px; border-radius:12px; 
+  background:linear-gradient(90deg, rgba(45,191,127,0.08), rgba(45,191,127,0.03)); 
+  border:1px solid rgba(45,191,127,0.12); color:var(--text); text-decoration:none; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.turnos__contact-card:hover { transform: translateY(-4px); box-shadow:0 18px 36px rgba(16,24,40,0.06); }
+
+.turnos__contact-icon { width:48px; height:48px; display:grid; place-items:center; border-radius:10px; background:#fff; box-shadow:0 6px 18px rgba(16,24,40,0.06); border:1px solid rgba(15,23,36,0.04); }
+.turnos__contact-number { font-weight:800; }
+.turnos__contact-hours { color:var(--muted); font-size:0.85rem; }
+.turnos__aside-hint { color:var(--muted); font-size:0.85rem; margin-top:12px; }
+
+/* responsive */
 @media (max-width: 520px) {
-  .schedule-section {
-    padding: 36px 14px;
-  }
-
-  .schedule__form {
-    padding: 18px;
-  }
-
-  .contact-aside {
-    padding: 14px;
-  }
-
-  .btn-primary {
-    padding: 10px 14px;
-  }
+  .turnos-section { padding:40px 16px; }
+  .turnos__form { padding:18px; }
+  .turnos__aside { padding:14px; }
+  .turnos__btn { padding:10px 14px; }
 }
