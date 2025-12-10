@@ -1,36 +1,39 @@
-<!-- Ejemplo: src/app/shared/navbar/navbar.component.html -->
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" [class.menu-open]="isOpen">
   <div class="container-fluid nav-bg">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#" (click)="$event.preventDefault(); onNavigate('home')">
-      <span class="brand-text" aria-hidden="false" aria-label="GNC Constitución">
+
+    <a class="navbar-brand" href="#" (click)="onNavigate($event,'home')">
+      <span class="brand-text" aria-label="GNC Constitución">
         <span class="gnc">GNC</span>
         <span class="constitucion">CONSTITUCIÓN</span>
       </span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="navbar-toggler"
+            type="button"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="isOpen"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- MENÚ -->
+    <div class="collapse navbar-collapse" [class.show]="isOpen" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item">
-          <a class="nav-link" href="#home" (click)="onNavigate($event, 'home')">Home</a>
+          <a class="nav-link" href="#home" (click)="onNavigate($event,'home')">Home</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="#servicios" (click)="onNavigate($event, 'servicios')">Servicios</a>
+          <a class="nav-link" href="#servicios" (click)="onNavigate($event,'servicios')">Servicios</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="#turnos" (click)="onNavigate($event, 'turnos')">Turnos</a>
+          <a class="nav-link" href="#turnos" (click)="onNavigate($event,'turnos')">Turnos</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="#contacto" (click)="onNavigate($event, 'contacto')">Contacto</a>
+          <a class="nav-link" href="#contacto" (click)="onNavigate($event,'contacto')">Contacto</a>
         </li>
       </ul>
     </div>
+
   </div>
 </nav>

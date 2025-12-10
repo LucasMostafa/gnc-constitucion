@@ -1,199 +1,227 @@
-// variables
-$primary: #0b46a6;       // azul principal
-$yellow: #ffd166;       // amarillo para "CONSTITUCIÓN"
-$shadow: 0 6px 18px rgba(0,0,0,0.08);
+// VARIABLES
+$primary: #0b46a6;
+$primary-dark: #052c6e;
+$yellow: #ffd166;
 $nav-height: 72px;
-$nav-padding: 0.5rem 1rem;
-$blur: 8px;
 
-/* Reset / mejoras */
+/* Reset mínimo */
 html, body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-body {
-  padding-top: $nav-height;
-}
+body { padding-top: $nav-height; }
 
 /* ========================
    NAVBAR
    ======================== */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1030;
-  width: 100%;
-  border-top: 0 !important;
-  outline: none;
+  padding: 0;
+  transition: all 0.25s ease;
 
   .nav-bg {
     width: 100%;
     background: $primary;
-    padding: $nav-padding;
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: $shadow;
     min-height: $nav-height;
-    backdrop-filter: blur($blur);
-    border-top: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    backdrop-filter: blur(6px);
   }
 
-  &, & * {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* -----------------------
-     BRAND / ANIMACIÓN
-     ----------------------- */
+  /* ========================
+     BRAND (animación)
+     ======================== */
   .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    user-select: none;
+    gap: 0.6rem;
+    z-index: 1050;
 
-    .logo {
-      height: 48px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      border-radius: 6px;
-      border: none;
-    }
-
-    /* Contenedor del texto para controlar overflow durante la animación */
     .brand-text {
       display: flex;
       align-items: baseline;
-      gap: 0.5rem;
-      font-weight: 700;
+      gap: 0.4rem;
+      font-weight: 800;
       letter-spacing: 0.6px;
-      font-size: 1rem;
       text-transform: uppercase;
-      overflow: hidden;           /* importante para animación limpia */
+      overflow: visible;
       white-space: nowrap;
     }
 
-    /* Texto separado (cada parte tendrá su propio delay) */
     .gnc, .constitucion {
       display: inline-block;
-      transform: translateX(-28px) translateZ(0); /* start off-screen-ish */
+      transform: translateX(-28px);
       opacity: 0;
-      /* animation applies on load */
       animation-name: slideInFromLeft;
       animation-duration: 700ms;
       animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
       animation-fill-mode: forwards;
-      /* small 3D context to make transforms smoother on some browsers */
-      backface-visibility: hidden;
-      -webkit-font-smoothing: antialiased;
       will-change: transform, opacity;
+      backface-visibility: hidden;
     }
 
-    /* Stagger: GNC primero, Constitución después */
     .gnc {
-      color: #ffffff;
+      color: #fff;
       font-size: 1.62rem;
+      font-weight: 700;
       animation-delay: 0s;
     }
-
     .constitucion {
       color: $yellow;
       font-size: 1.62rem;
-      font-weight: 800;
+      font-weight: 700;
       animation-delay: 0.18s;
-    }
-  } /* .navbar-brand */
-
-  /* Keyframes */
-  @keyframes slideInFromLeft {
-    0% {
-      transform: translateX(-28px);
-      opacity: 0;
-    }
-    60% {
-      transform: translateX(6px); /* slight overshoot */
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
     }
   }
 
-  /* -----------------------
-     TOGGLER & ICON
-     ----------------------- */
+  @keyframes slideInFromLeft {
+    0% { transform: translateX(-28px); opacity: 0; }
+    60% { transform: translateX(6px); opacity: 1; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  /* ========================
+     TOGGLER (hamburguesa -> X)
+     ======================== */
   .navbar-toggler {
+    z-index: 2000;
     border: none;
-    padding: 0.25rem 0.5rem;
     background: transparent;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    filter: brightness(1.2);
-  }
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    position: relative;
+    display: block;
+    transition: all .28s ease;
 
-  /* -----------------------
-     LINKS
-     ----------------------- */
-  .navbar-nav {
-    align-items: center;
-
-    .nav-link {
-      color: rgba(255,255,255,0.95);
-      font-weight: 600;
-      padding: 0.375rem 0.75rem;
-      transition: transform .18s ease, opacity .18s ease, background .18s ease, box-shadow .18s ease;
-      position: relative;
-      font-size: 0.98rem;
-      border-radius: 8px;
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      transition: all .28s ease;
     }
-
-    .nav-link:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .nav-link::after { display: none; }
-
-    .nav-link.active,
-    .nav-item .nav-link.router-link-active {
-      background: rgba(255,255,255,0.06);
-      box-shadow: 0 6px 18px rgba(2,6,23,0.12);
-      transform: translateY(-1px);
-      color: #fff;
-    }
+    &::before { top: -7px; }
+    &::after { top: 7px; }
   }
 
-  /* responsive */
-  @media (max-width: 991px) {
-    .brand-text { font-size: 0.95rem; }
-    .logo { height: 42px; }
+  /* Al abrir: X */
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background: transparent;
   }
-  
-
-  @media (max-width: 576px) {
-    .brand-text { display: none; } /* opcional: sólo icono en mobile */
-    .logo { height: 36px; }
-    .navbar-nav .nav-link { font-size: 0.95rem; padding: .4rem .6rem; }
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
   }
 
-  /* Respect user preference for reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .gnc, .constitucion {
-      animation: none !important;
-      transform: none !important;
+  /* ========================
+     COLLAPSE / MENÚ
+     ======================== */
+
+  /* Desktop reset: el collapse no tapa nada ni tiene fondo */
+  @media (min-width: 992px) {
+    .navbar-toggler { display: none !important; }
+    .navbar-collapse {
+      position: static !important;
+      display: flex !important;
+      width: auto !important;
+      height: auto !important;
       opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      //box-shadow: none !important;
+    }
+    .navbar-nav { flex-direction: row; gap: 1.5rem; margin-left: auto; }
+    .nav-link { color: rgba(255,255,255,0.95); padding: .4rem .8rem; }
+  }
+
+  /* Mobile: menú full-screen semitransparente, SIN recuadro extra */
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-top: calc(#{$nav-height} + 2rem);
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s;
+      z-index: 1050;
+
+      /* fondo SEMITRANSPARENTE (NO recuadro) */
+      background: linear-gradient(180deg, rgba($primary,0.92) 0%, rgba($primary-dark,0.88) 100%);
+      backdrop-filter: blur(6px);
+      /* quitar cualquier sombra/redondeo que hiciera parecer un recuadro */
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    /* cuando está abierto */
+    .navbar-collapse.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* items en columna, más espacio */
+    .navbar-collapse .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+      padding: 0 1.2rem;
+    }
+
+    .navbar-collapse .nav-link {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.95);
+      text-align: center;
+      padding: .5rem 1rem;
+      background: transparent; /* asegurar no haya fondo en cada link */
+      box-shadow: none;
+    }
+
+    /* quitar recuadros / focus que Windows/Chrome ponga */
+    .navbar-collapse .nav-link:focus,
+    .navbar-collapse .nav-link:active {
+      outline: none;
+      box-shadow: none;
+      background: transparent;
     }
   }
-} /* .navbar */
+
+  /* Respect user reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .gnc, .constitucion { animation: none !important; transform: none !important; opacity: 1 !important; }
+    .navbar-toggler-icon, .navbar-toggler { transition: none !important; }
+  }
+}
