@@ -45,45 +45,53 @@ $hero-gradient-end: #d7ecff;
   }
 
   /* ================================
-     GRID DE IMÁGENES
+     HERO SLIDER (CAROUSEL)
   ================================= */
   .hero-media {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
-    .media-grid {
+    // Estilo del contenedor del slider
+    .carousel {
       width: 100%;
-      max-width: 520px;
-      display: grid;
-      grid-template-columns: 1fr 130px;
-      grid-template-rows: auto auto;
-      gap: 14px;
-      align-items: start;
+      max-width: 520px; // Mantiene el tamaño que tenía tu grilla original
+      border-radius: 14px;
+      overflow: hidden; 
+      box-shadow: 0 10px 30px rgba(8, 23, 54, 0.12);
+      background: #fff; // Fondo blanco de seguridad
     }
 
+    // Estilo de las imágenes individuales
     .media-item {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(8, 23, 54, 0.08);
-      transition: transform .35s cubic-bezier(.2,.9,.3,1);
-      will-change: transform;
-      object-fit: cover;
+      height: 400px;         // Altura fija para consistencia
+      object-fit: cover;     // La imagen llena el espacio sin deformarse
+      object-position: center;
+      
+      // Ajuste para celulares
+      @media (max-width: 768px) {
+        height: 280px; 
+      }
     }
 
-    .big { grid-column: 1 / 2; grid-row: 1 / 3; }
-    .tl  { grid-column: 2 / 3; grid-row: 1 / 2; }
-    .br  { grid-column: 2 / 3; grid-row: 2 / 3; }
+    // Ajuste de los controles (flechas)
+    .carousel-control-prev, 
+    .carousel-control-next {
+      width: 12%; 
+      opacity: 0.7;
+      &:hover { opacity: 1; }
+    }
 
-    .media-item:hover { transform: translateY(-6px) scale(1.02); }
+    // Flechas oscuras (filtro) para que se vean bien sobre fotos claras
+    .carousel-control-prev-icon, 
+    .carousel-control-next-icon {
+       filter: invert(1) grayscale(100); 
+    }
 
-    @media (max-width: 767.98px) {
-      .media-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; }
-      .big { grid-column: 1 / 3; grid-row: 1 / 2; }
-      .tl  { grid-column: 1 / 2; grid-row: 2 / 3; }
-      .br  { grid-column: 2 / 3; grid-row: 2 / 3; }
+    // Indicadores (puntos) color azul
+    .carousel-indicators [data-bs-target] {
+      background-color: $nav-blue;
     }
   }
 
@@ -92,21 +100,20 @@ $hero-gradient-end: #d7ecff;
   ================================= */
   .services-row {
     margin-top: 3rem;
-    padding-left: 6px;   /* pequeño padding para que las tarjetas no peguen al borde */
+    padding-left: 6px;
     padding-right: 6px;
 
-    /* Aseguramos espacio entre columnas en todos los anchos (adicional a gx) */
     > .col-md-4 {
       padding-left: 6px;
       padding-right: 6px;
-      margin-bottom: 0; /* gestionamos el spacing dentro de .service-card */
+      margin-bottom: 0;
     }
 
     .service-card {
-      background: #ffffff; /* fondo blanco puro para contraste */
+      background: #ffffff;
       border-radius: 14px;
       padding: 16px 18px;
-      margin-bottom: 16px;            /* separación vertical entre tarjetas */
+      margin-bottom: 16px;
       box-shadow: 0 6px 20px rgba(16, 38, 71, 0.06);
       transition: transform .18s ease, box-shadow .18s ease;
       display: flex;
@@ -141,7 +148,6 @@ $hero-gradient-end: #d7ecff;
       }
     }
 
-    /* Si querés que las tarjetas no se compriman demasiado en pantallas pequeñas */
     @media (max-width: 991.98px) {
       > .col-md-4 { padding-left: 8px; padding-right: 8px; }
       .service-card { padding: 14px; border-radius: 12px; }

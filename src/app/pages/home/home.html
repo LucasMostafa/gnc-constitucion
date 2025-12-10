@@ -1,9 +1,7 @@
-<!-- src/app/pages/home/home.component.html -->
-<!-- SECCIÓN HOME -->
 <section id="home" class="home-hero scroll-offset">
   <div class="container">
     <div class="row align-items-center gy-4">
-      <!-- Texto principal -->
+      
       <div class="col-lg-6 order-2 order-lg-1">
         <div class="hero-content">
           <p class="eyebrow">GNC Constitución</p>
@@ -14,7 +12,6 @@
           </p>
 
           <div class="d-flex gap-2 flex-wrap">
-            <!-- estos links los manejamos desde el navbar, acá mantenemos href por accesibilidad -->
             <a routerLink="/servicios" class="btn btn-primary btn-lg hero-btn" href="#servicios" (click)="$event.preventDefault();">GNC</a>
             <a routerLink="/contacto" class="btn btn-consultar btn-lg hero-btn" href="#contacto" (click)="$event.preventDefault();">Matafuegos</a>
           </div>
@@ -33,23 +30,49 @@
         </div>
       </div>
 
-      <!-- Imágenes del hero -->
       <div class="col-lg-6 order-1 order-lg-2">
         <div class="hero-media">
-          <div class="media-grid">
-            <img src="assets/img/home/TA-gemini.png" alt="Servicio de GNC" class="img-fluid media-item big" loading="lazy" />
-            <img src="assets/img/home/reguladores-gemini.png" alt="Equipo técnico" class="img-fluid media-item small tl" loading="lazy" />
-            <img src="assets/img/home/diafragma-gemini.png" alt="Accesorios" class="img-fluid media-item small br" loading="lazy" />
+          
+          <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+            
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="assets/img/home/TA-gemini.png" class="d-block w-100 media-item" alt="Servicio de GNC" loading="lazy">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/home/regulador-5ta.png" class="d-block w-100 media-item" alt="Reguladores y Mantenimiento" loading="lazy">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/home/diafragma-gemini.png" class="d-block w-100 media-item" alt="Repuestos y Diafragmas" loading="lazy">
+              </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+
           </div>
-        </div>
+          </div>
       </div>
+
     </div>
   </div>
 
   <div class="container">
     <div class="row services-row mt-5 gx-3 gy-3">
       <div class="col-12">
-        <h2 class="h5 mb-3">A que nos dedicamos</h2>
+        <h2 class="h5 mb-3">A qué nos dedicamos</h2>
       </div>
 
       <div class="col-md-4">
@@ -71,7 +94,7 @@
           </div>
           <div>
             <h3 class="h6 mb-1">Reparaciones</h3>
-            <p class="mb-0 small text-muted">Equipos carburador, 4ta y 5ta generacion.</p>
+            <p class="mb-0 small text-muted">Equipos carburador, 4ta y 5ta generación.</p>
           </div>
         </div>
       </div>
@@ -91,7 +114,6 @@
   </div>
 </section>
 
-<!-- Si preferís que app-servicios y app-turnos sean componentes, dejalos así y envolvelos en secciones con id -->
 <section id="servicios" class="scroll-offset">
   <app-servicios></app-servicios>
 </section>

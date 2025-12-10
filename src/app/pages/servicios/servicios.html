@@ -1,74 +1,78 @@
-<!-- servicios.component.html -->
-<section id="servicios" class="servicios-section" aria-labelledby="titulo-servicios">
-  <div class="bg-overlay" aria-hidden="true"></div>
+<section id="servicios" class="servicios-section">
+  <div class="bg-overlay"></div>
 
   <div class="container servicios-container">
     <header class="servicios-header">
-      <h2 id="titulo-servicios" class="titulo-servicios">Nuestros Servicios</h2>
-      <p class="subtitulo">Soluciones profesionales para tu equipo de GNC — rápidas, seguras y certificadas.</p>
+      <h2 class="titulo-servicios">Nuestros Servicios</h2>
+      <p class="subtitulo">Todo sobre GNC.</p>
     </header>
 
-    <nav class="servicios-filters" aria-label="Seleccionar servicio">
-      <!-- opcional: filtros o micro-nav -->
-      <button class="filter-btn" data-target="all" aria-pressed="true">Todos</button>
-      <button class="filter-btn" data-target="mantenimiento">Mantenimiento</button>
-      <button class="filter-btn" data-target="reparacion">Reparación</button>
-    </nav>
+    <div class="servicios-list">
+      
+      <article 
+        *ngFor="let item of servicios; let i = index" 
+        class="servicio-row" 
+        [class.is-expanded]="item.expandido"
+      >
+        <div class="servicio-summary" (click)="toggleServicio(i)">
+          
+          <div class="servicio-img-wrapper">
+            <img [src]="item.imagen" [alt]="item.titulo" onerror="this.src='assets/img/placeholder.jpg'">
+          </div>
 
-    <div class="servicios-grid" role="list">
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
-        <div class="card-inner">
-          <h3>Renovación de oblea</h3>
-          <p>Revisión del vehículo en el momento y oblea en el día.</p>
+          <div class="servicio-info-header">
+            <div class="header-top">
+              <span class="badge">{{ item.categoria | titlecase }}</span>
+              <h3>{{ item.titulo }}</h3>
+            </div>
+            <p class="bajada">{{ item.bajada }}</p>
+            
+            <button class="btn-ver-mas">
+              {{ item.expandido ? 'Menos info' : 'Ver más detalles' }}
+              <span class="arrow" [class.rotated]="item.expandido">▼</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="servicio-details" [style.max-height]="item.expandido ? '1000px' : '0'">
+          <div class="details-inner">
+            <hr class="separator">
+            
+            <div class="details-grid">
+              <div class="col-desc">
+                <h4>Descripción Técnica</h4>
+                <p>{{ item.descripcionLarga }}</p>
+                
+                <div *ngIf="item.herramientas" class="tool-box">
+                  <strong>🛠 Herramientas utilizadas:</strong> {{ item.herramientas }}
+                </div>
+              </div>
+
+              <div class="col-features">
+                <h4>Características</h4>
+                <ul>
+                  <li *ngFor="let feat of item.caracteristicas">✓ {{ feat }}</li>
+                </ul>
+                
+                <div *ngIf="item.precio" class="price-box">
+                  <span>Precio estimado:</span>
+                  <strong>{{ item.precio }}</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-solicitar-card" (click)="scrollToContact()">Sacar turno para esto</button>
+            </div>
+
+          </div>
         </div>
       </article>
 
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
-        <div class="card-inner">
-          <h3>Prueba hidráulica</h3>
-          <p>Pruebas hidráulicas certificadas en el día.</p>
-        </div>
-      </article>
-
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="calibracion">
-        <div class="card-inner">
-          <h3>Calibración</h3>
-          <p>Calibramos tu equipo para optimizar consumo, arranque y rendimiento general.</p>
-        </div>
-      </article>
-
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
-        <div class="card-inner">
-          <h3>Instalación</h3>
-          <p>Conversión de tu vehículo a GNC en el día.</p>
-        </div>
-      </article>
-
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
-        <div class="card-inner">
-          <h3>Reparación de reguladores</h3>
-          <p>Diagnóstico y reparación profesional de reguladores — todas las marcas.</p>
-        </div>
-      </article>
-
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="reparacion">
-        <div class="card-inner">
-          <h3>Pérdidas</h3>
-          <p>Detección y reparación de fugas de gas y perdidas de agua.</p>
-        </div>
-      </article>
-
-      <article class="servicio-card" role="listitem" tabindex="0" data-category="mantenimiento">
-        <div class="card-inner">
-          <h3>Mantenimiento de equipo</h3>
-          <p>Mantenimiento preventivo e integral para alargar la vida útil del equipo.</p>
-        </div>
-      </article>
     </div>
 
     <div class="servicios-cta">
-      <a class="btn-primary" href="/turnos">Solicitar turno</a>
-      <a class="btn-ghost" href="/faq">Preguntas frecuentes</a>
+      <button class="btn-primary" (click)="scrollToContact()">Solicitar turno ahora</button>
     </div>
   </div>
 </section>
