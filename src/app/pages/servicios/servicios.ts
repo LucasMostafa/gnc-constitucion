@@ -74,7 +74,7 @@ export class Servicios {
 
   scrollToContact() {
     // Busca el elemento por ID y scrollea suave
-    const element = document.getElementById('turnos-title'); // Asegúrate que tu componente de turnos tenga este ID
+    const element = document.getElementById('turnos'); // Asegúrate que tu componente de turnos tenga este ID
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
