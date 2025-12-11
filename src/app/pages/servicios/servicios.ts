@@ -45,8 +45,9 @@ export class Servicios {
       categoria: 'mantenimiento',
       imagen: 'assets/img/servicios/pruebahidraulica.png',
       descripcionLarga: 'Desmontaje y prueba de resistencia del cilindro a alta presión para garantizar seguridad.',
-      caracteristicas: ['Desmontaje de válvula', 'Limpieza interna', 'Certificado'],
+      caracteristicas: ['Desmontaje de válvula', 'Limpieza interna', 'Certificado', 'Valvula de cilindro Tomasetto Achille'],
       herramientas: 'Torquimetro y manometros certificados',
+      precio: '$190.000',
       expandido: false
     },
     {
@@ -57,6 +58,17 @@ export class Servicios {
       descripcionLarga: 'Ajuste fino de la curva de avance y mezcla mediante interfaz.',
       caracteristicas: ['Mejora el funcionamiento', 'Elimina tirones', 'Optimiza consumo'],
       herramientas: 'Interfaz Tomasetto Achille + Scanner Multimarca',
+      precio: '$35.000',
+      expandido: false
+    },
+    {
+      titulo: 'Instalación',
+      bajada: 'Convertimos tu vehiculo a GNC.',
+      categoria: 'conversion',
+      imagen: 'assets/img/servicios/reparacion-gemini.png',
+      descripcionLarga: 'Instalación de equipo acorde a lo que tu vehículo necesita.',
+      caracteristicas: ['Cilindro', 'Cuna homologada', 'Kit electronico', 'Válvula de carga externa'],
+      herramientas: 'Equipos Tomasetto Achille 5ta generación - Equipos TES inyección y carburador',
       expandido: false
     }
   ];
