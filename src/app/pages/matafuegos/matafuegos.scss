@@ -1,19 +1,12 @@
-// matafuegos.component.scss
-
 $color-red-fire: #b91c1c; 
 $color-dark-text: #1e293b;
-$color-light-bg: #f8fafc; // Color claro de fondo
+$color-light-bg: #f8fafc; 
 
 .matafuegos-section {
   min-height: 100vh;
-  // Padding arriba para despegar del navbar fijo
   padding: 8rem 1rem 4rem 1rem; 
-  
-  // AQUI EL CAMBIO: Fondo claro limpio
   background-color: $color-light-bg;
   color: $color-dark-text;
-  
-  // Animación suave de entrada (opcional)
   animation: fadeIn 0.8s ease-out;
 }
 
@@ -35,7 +28,7 @@ $color-light-bg: #f8fafc; // Color claro de fondo
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.9rem;
-    color: #64748b; // Gris medio
+    color: #64748b; 
     margin-bottom: 0.5rem;
     font-weight: 700;
   }
@@ -47,9 +40,7 @@ $color-light-bg: #f8fafc; // Color claro de fondo
     color: $color-dark-text;
     
     .highlight {
-      // La palabra MATAFUEGOS en rojo y subrayada
       color: $color-red-fire; 
-      // text-decoration: underline; //Para subrayar la palabra
       text-decoration-color: rgba($color-red-fire, 0.3);
     }
   }
@@ -62,17 +53,18 @@ $color-light-bg: #f8fafc; // Color claro de fondo
   }
 }
 
-// Tarjetas con borde suave en lugar de fondo transparente
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-bottom: 4rem;
+  // AQUI ESTABA EL PROBLEMA DEL ESPACIO BLANCO
+  // Lo bajé de 4rem a 2rem para acercar la imagen a las tarjetas
+  margin-bottom: 0 rem; 
 }
 
 .card-service {
   background: white;
-  border: 1px solid #e2e8f0; // Borde gris muy suave
+  border: 1px solid #e2e8f0; 
   border-radius: 12px;
   padding: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,6 +93,24 @@ $color-light-bg: #f8fafc; // Color claro de fondo
     line-height: 1.5;
     color: #475569;
   }
+}
+
+// NUEVO: Contenedor específico para el logo
+.partner-logo-container {
+    margin-bottom: 2rem; // Espacio entre el logo y el botón de "Consultar"
+}
+
+.img-partner {
+    // IMPORTANTE: max-width 100% evita que se salga de la pantalla en celulares
+    max-width: 100%; 
+    width: 350px; // Lo bajé un poco de 450 a 350 para que sea sutil, ajústalo a gusto
+    height: auto; 
+    transition: transform 0.3s ease;
+    cursor: pointer; // Para que aparezca la manito al pasar el mouse
+}
+
+.img-partner:hover {
+    transform: scale(1.05);
 }
 
 // Call to Action
