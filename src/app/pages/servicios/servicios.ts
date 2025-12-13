@@ -44,7 +44,7 @@ export class Servicios {
       bajada: 'Pruebas hidráulicas certificadas en el día (5 años).',
       categoria: 'mantenimiento',
       imagen: 'assets/img/servicios/pruebahidraulica.png',
-      descripcionLarga: 'Desmontaje y prueba de resistencia del cilindro a alta presión para garantizar seguridad.',
+      descripcionLarga: 'Desmontaje y prueba de resistencia del cilindro a alta presión para garantizar seguridad. Utilizamos válvulas de cilindro Tomasetto Achille, la mejor calidad del mercado.',
       caracteristicas: ['Desmontaje de válvula', 'Limpieza interna', 'Certificado', 'Valvula de cilindro Tomasetto Achille'],
       herramientas: 'Torquimetro y manometros certificados',
       precio: '$190.000',

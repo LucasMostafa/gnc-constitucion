@@ -1,0 +1,33 @@
+<section class="matafuegos-section">
+  <div class="container fade-in-up">
+    
+    <div class="header-content">
+      <h4 class="subtitle">NUEVO SERVICIO EN GNC CONSTITUCIÓN</h4>
+      <h1 class="title">CENTRO DE RECEPCIÓN <span class="highlight">MATAFUEGOS</span></h1>
+      <p class="intro-text">
+        Gestionamos la seguridad de tu vehículo y tu negocio. 
+        Calidad certificada en Mar del Plata.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card-service" *ngFor="let item of features">
+        <div class="icon-wrapper">
+          <span class="emoji-icon">{{ item.icon }}</span>
+        </div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.desc }}</p>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <p class="cta-text">¿Se venció tu carga? Contactanos.</p>
+      <a href="https://wa.me/5492236696219?text=Hola,%20quiero%20consultar%20por%20recarga%20de%20matafuegos" 
+         target="_blank" 
+         class="btn-whatsapp">
+         Consultar
+      </a>
+    </div>
+
+  </div>
+</section>

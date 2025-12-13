@@ -1,0 +1,133 @@
+// matafuegos.component.scss
+
+$color-red-fire: #b91c1c; 
+$color-dark-text: #1e293b;
+$color-light-bg: #f8fafc; // Color claro de fondo
+
+.matafuegos-section {
+  min-height: 100vh;
+  // Padding arriba para despegar del navbar fijo
+  padding: 8rem 1rem 4rem 1rem; 
+  
+  // AQUI EL CAMBIO: Fondo claro limpio
+  background-color: $color-light-bg;
+  color: $color-dark-text;
+  
+  // Animación suave de entrada (opcional)
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header-content {
+  margin-bottom: 3rem;
+
+  .subtitle {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: #64748b; // Gris medio
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: $color-dark-text;
+    
+    .highlight {
+      // La palabra MATAFUEGOS en rojo y subrayada
+      color: $color-red-fire; 
+      // text-decoration: underline; //Para subrayar la palabra
+      text-decoration-color: rgba($color-red-fire, 0.3);
+    }
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #475569;
+  }
+}
+
+// Tarjetas con borde suave en lugar de fondo transparente
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card-service {
+  background: white;
+  border: 1px solid #e2e8f0; // Borde gris muy suave
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+  }
+
+  .icon-wrapper {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: $color-dark-text;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #475569;
+  }
+}
+
+// Call to Action
+.cta-container {
+  .cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: $color-dark-text;
+  }
+
+  .btn-whatsapp {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #1ebc57;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+  }
+}

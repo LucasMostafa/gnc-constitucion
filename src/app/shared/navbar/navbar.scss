@@ -4,6 +4,9 @@ $primary-dark: #052c6e;
 $yellow: #ffd166;
 $nav-height: 72px;
 
+// Variables para Matafuegos
+$red-fire: #b91c1c;
+
 /* Reset mínimo */
 html, body {
   margin: 0;
@@ -25,7 +28,7 @@ body { padding-top: $nav-height; }
 
   .nav-bg {
     width: 100%;
-    background: $primary;
+    background: $primary; // Color Azul por defecto
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
@@ -33,6 +36,15 @@ body { padding-top: $nav-height; }
     min-height: $nav-height;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     backdrop-filter: blur(6px);
+    
+    // TRANSICIÓN IMPORTANTE: Para que cambie de color suavemente
+    transition: background-color 0.5s ease-in-out;
+
+    // ESTADO ROJO (Cuando isMatafuegosRoute es true)
+    &.nav-roja {
+      background-color: $red-fire !important; 
+      box-shadow: 0 4px 20px rgba(185, 28, 28, 0.3); // Sombra rojiza
+    }
   }
 
   /* ========================
@@ -43,6 +55,7 @@ body { padding-top: $nav-height; }
     align-items: center;
     gap: 0.6rem;
     z-index: 1050;
+    cursor: pointer; // Agregado cursor
 
     .brand-text {
       display: flex;
@@ -141,7 +154,7 @@ body { padding-top: $nav-height; }
      COLLAPSE / MENÚ
      ======================== */
 
-  /* Desktop reset: el collapse no tapa nada ni tiene fondo */
+  /* Desktop */
   @media (min-width: 992px) {
     .navbar-toggler { display: none !important; }
     .navbar-collapse {
@@ -154,13 +167,12 @@ body { padding-top: $nav-height; }
       transform: none !important;
       background: transparent !important;
       padding: 0 !important;
-      //box-shadow: none !important;
     }
     .navbar-nav { flex-direction: row; gap: 1.5rem; margin-left: auto; }
     .nav-link { color: rgba(255,255,255,0.95); padding: .4rem .8rem; }
   }
 
-  /* Mobile: menú full-screen semitransparente, SIN recuadro extra */
+  /* Mobile */
   @media (max-width: 991px) {
     .navbar-collapse {
       position: fixed;
@@ -175,22 +187,24 @@ body { padding-top: $nav-height; }
       transition: opacity .25s ease, transform .25s ease, visibility .25s;
       z-index: 1050;
 
-      /* fondo SEMITRANSPARENTE (NO recuadro) */
+      /* fondo SEMITRANSPARENTE AZUL */
       background: linear-gradient(180deg, rgba($primary,0.92) 0%, rgba($primary-dark,0.88) 100%);
       backdrop-filter: blur(6px);
-      /* quitar cualquier sombra/redondeo que hiciera parecer un recuadro */
       box-shadow: none;
       border-radius: 0;
     }
 
-    /* cuando está abierto */
+    /* CAMBIO MOBILE: Si el menú está abierto Y es la sección matafuegos, el fondo mobile también debe ser rojo */
+    .nav-bg.nav-roja ~ .navbar-collapse {
+       background: linear-gradient(180deg, rgba($red-fire, 0.95) 0%, rgba(127, 29, 29, 0.9) 100%) !important;
+    }
+
     .navbar-collapse.show {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
 
-    /* items en columna, más espacio */
     .navbar-collapse .navbar-nav {
       display: flex;
       flex-direction: column;
@@ -206,11 +220,10 @@ body { padding-top: $nav-height; }
       color: rgba(255,255,255,0.95);
       text-align: center;
       padding: .5rem 1rem;
-      background: transparent; /* asegurar no haya fondo en cada link */
+      background: transparent;
       box-shadow: none;
     }
 
-    /* quitar recuadros / focus que Windows/Chrome ponga */
     .navbar-collapse .nav-link:focus,
     .navbar-collapse .nav-link:active {
       outline: none;
@@ -219,7 +232,6 @@ body { padding-top: $nav-height; }
     }
   }
 
-  /* Respect user reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .gnc, .constitucion { animation: none !important; transform: none !important; opacity: 1 !important; }
     .navbar-toggler-icon, .navbar-toggler { transition: none !important; }
