@@ -55,7 +55,7 @@ body { padding-top: $nav-height; }
     align-items: center;
     gap: 0.6rem;
     z-index: 1050;
-    cursor: pointer; // Agregado cursor
+    cursor: pointer;
 
     .brand-text {
       display: flex;
@@ -187,17 +187,19 @@ body { padding-top: $nav-height; }
       transition: opacity .25s ease, transform .25s ease, visibility .25s;
       z-index: 1050;
 
-      /* fondo SEMITRANSPARENTE AZUL */
+      /* fondo SEMITRANSPARENTE AZUL (POR DEFECTO) */
       background: linear-gradient(180deg, rgba($primary,0.92) 0%, rgba($primary-dark,0.88) 100%);
       backdrop-filter: blur(6px);
       box-shadow: none;
       border-radius: 0;
     }
 
-    /* CAMBIO MOBILE: Si el menú está abierto Y es la sección matafuegos, el fondo mobile también debe ser rojo */
-    .nav-bg.nav-roja ~ .navbar-collapse {
+    /* === CORRECCIÓN APLICADA AQUÍ === */
+    /* Quitamos el "~" porque .navbar-collapse es un HIJO directo de .nav-bg en el HTML */
+    .nav-bg.nav-roja .navbar-collapse {
        background: linear-gradient(180deg, rgba($red-fire, 0.95) 0%, rgba(127, 29, 29, 0.9) 100%) !important;
     }
+    /* ================================ */
 
     .navbar-collapse.show {
       opacity: 1;
